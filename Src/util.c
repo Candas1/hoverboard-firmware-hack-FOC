@@ -870,7 +870,13 @@ void readInputRaw(void) {
           ibusL_captured_value[(i/2)] = CLAMP(commandL.channels[i] + (commandL.channels[i+1] << 8) - 1000, 0, INPUT_MAX); // 1000-2000 -> 0-1000
         }
         input1[inIdx].raw = (ibusL_captured_value[0] - 500) * 2;
-        input2[inIdx].raw = (ibusL_captured_value[1] - 500) * 2; 
+        input2[inIdx].raw = (ibusL_captured_value[1] - 500) * 2;
+        swa = ibusL_captured_value[6] > 850;
+        swb = ibusL_captured_value[7] > 850;
+        vra = ibusL_captured_value[4];
+        vrb = ibusL_captured_value[5];
+        swc = ibusL_captured_value[8] > 850 ? 2 : ibusL_captured_value[8] > 250 ? 1 : 0;
+        swd = ibusL_captured_value[9] > 850;
       #else
         input1[inIdx].raw = commandL.steer;
         input2[inIdx].raw = commandL.speed;

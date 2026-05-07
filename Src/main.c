@@ -367,7 +367,7 @@ int main(void) {
       
       // If this switch is ON, invert both the speed and steer values
       if (swb){
-        input1[inIdx].cmd *= -1;
+        input1[inIdx].cmd *= 1; // Don't flip steering with swb
         input2[inIdx].cmd *= -1;
       }
 
